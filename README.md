@@ -2,7 +2,7 @@
 
 This ROS package is a modified fork of the [carla-simulator/ros-bridge](https://github.com/carla-simulator/ros-bridge) package that is adapted to work with ROS2 Humble running on Ubuntu 22.04 LTS with Scenario Runner v0.9.15. The ROS bridge enables two-way communication between ROS and CARLA. The information from the CARLA server is translated into ROS topics. Similarly, the messages sent between nodes in ROS get translated into commands to be applied in CARLA.
 
-You are currently in the `AutoBreakFeature` branch of this repository. This branch is further restricted and refined as a demonstration of the Automatic Braking Feature. Specifically, our interest is in analyzing the behavioral competency of the aforementioned feature in an automated vehicle under network-bound perturbations.
+You are currently in the `AutoBrakeFeature` branch of this repository. This branch is further restricted and refined as a demonstration of the Automatic Braking Feature. Specifically, our interest is in analyzing the behavioral competency of the aforementioned feature in an automated vehicle under network-bound perturbations.
 
 ## Main Requirements
 
@@ -34,6 +34,6 @@ rosdep install --from-paths src --ignore-src -r
 colcon build --symlink-install
 ```
 
-4. Follow instructions found in [CARLA Automatic Breaking Feature Demo](./docs/carla_abf_demo.md) to run the demo
+4. Follow instructions found in [CARLA Automatic brakeing Feature Demo](./docs/carla_abf_demo.md) to run the demo
 
 
