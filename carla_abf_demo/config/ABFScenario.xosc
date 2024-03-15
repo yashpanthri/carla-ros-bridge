@@ -121,8 +121,8 @@
                         <Environment name="Environment1">
                             <TimeOfDay animation="false" dateTime="2024-01-02T23:43:00"/>
                             <Weather cloudState="free">
-                                <Sun intensity="0.7" azimuth="0.0" elevation="0.5"/>
-                                <Fog visualRange="100000.0"/>
+                                <Sun intensity="0.8" azimuth="60.0" elevation="0.2"/>
+                                <Fog visualRange="5000.0"/>
                                 <Precipitation precipitationType="dry" intensity="0.0"/>
                             </Weather>
                             <RoadCondition frictionScaleFactor="1.0"/>
@@ -133,7 +133,7 @@
                     <PrivateAction>
                         <TeleportAction>
                             <Position>
-                                <LanePosition roadId="46" laneId="-1" offset="0.0" s="40.0"/>
+                                <LanePosition roadId="50" laneId="-1" offset="0.0" s="100.0"/>
                             </Position>
                         </TeleportAction>
                     </PrivateAction>
@@ -164,7 +164,7 @@
                     <PrivateAction>
                         <TeleportAction>
                             <Position>
-                                <LanePosition roadId="1072" laneId="-1" offset="0.0" s="0.0"/>
+                                <LanePosition roadId="42" laneId="-1" offset="0.0" s="23.0"/>
                             </Position>
                         </TeleportAction>
                     </PrivateAction>
@@ -173,7 +173,7 @@
                     <PrivateAction>
                         <TeleportAction>
                             <Position>
-                                <LanePosition roadId="46" laneId="-1" offset="0.0" s="115.0"/>
+                                <LanePosition roadId="50" laneId="-1" offset="0.0" s="175.0"/>
                             </Position>
                         </TeleportAction>
                     </PrivateAction>
@@ -182,7 +182,7 @@
                     <PrivateAction>
                         <TeleportAction>
                             <Position>
-                                <LanePosition roadId="46" laneId="-2" offset="0.0" s="40.0"/>
+                                <LanePosition roadId="50" laneId="-2" offset="0.0" s="100.0"/>
                             </Position>
                         </TeleportAction>
                     </PrivateAction>
@@ -191,7 +191,7 @@
                     <PrivateAction>
                         <TeleportAction>
                             <Position>
-                                <LanePosition roadId="46" laneId="-2" offset="0.0" s="85.0"/>
+                                <LanePosition roadId="50" laneId="-2" offset="0.0" s="145.0"/>
                             </Position>
                         </TeleportAction>
                     </PrivateAction>
@@ -200,7 +200,7 @@
                     <PrivateAction>
                         <TeleportAction>
                             <Position>
-                                <LanePosition roadId="46" laneId="-2" offset="0.0" s="120.0"/>
+                                <LanePosition roadId="42" laneId="-2" offset="0.0" s="5.0"/>
                             </Position>
                         </TeleportAction>
                     </PrivateAction>
@@ -458,7 +458,7 @@
                                                 <EntityRef entityRef="FollowCar"/>
                                             </TriggeringEntities>
                                             <EntityCondition>
-                                                <RelativeDistanceCondition entityRef="LeadCar" relativeDistanceType="longitudinal" value="13.0" freespace="true" rule="lessThan"/>
+                                                <RelativeDistanceCondition entityRef="LeadCar" relativeDistanceType="longitudinal" value="11.0" freespace="true" rule="lessThan"/>
                                             </EntityCondition>
                                         </ByEntityCondition>
                                     </Condition>

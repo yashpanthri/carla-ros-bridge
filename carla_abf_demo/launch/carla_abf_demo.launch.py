@@ -9,13 +9,13 @@ scenario_runner_root = os.getenv('SCENARIO_RUNNER_ROOT')
 
 # Default Goal Pose for the Ego Vehicle (Town04). Stored as Dictionary
 default_goal_pose = {
-    'px': float('5.0'),
-    'py': float('-70.0'),
-    'pz': float('0'),
-    'ox': float('0'),
-    'oy': float('0'),
-    'oz': float('0.71'),
-    'ow': float('0.7'),
+    'px': float('270.0'),
+    'py': float('375.0'),
+    'pz': float('0.0'),
+    'ox': float('0.0'),
+    'oy': float('0.0'),
+    'oz': float('0.0'),
+    'ow': float('1.0'),
 }
 
 # string with message to publish on topic /carla/available/scenarios
