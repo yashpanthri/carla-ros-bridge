@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <OpenSCENARIO>
-    <FileHeader revMajor="1" revMinor="0" date="2024-01-02T23:33:00" description="NIST::RevealScenario" author="Thoshitha Gamage"/>
+    <FileHeader revMajor="1" revMinor="0" date="2024-03-21T22:15:00" description="NIST::RevealScenario" author="Thoshitha Gamage"/>
     <ParameterDeclarations>
         <ParameterDeclaration name="FastLaneSpeed" parameterType="double" value="19.44" /> <!-- 19.44 m/s = 70mph -->
         <ParameterDeclaration name="MidLaneSpeed" parameterType="double" value="16.667" /> <!-- 18.055 m/s = 65mph -->
