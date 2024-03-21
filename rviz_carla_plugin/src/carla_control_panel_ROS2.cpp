@@ -80,7 +80,7 @@ CarlaControlPanel::CarlaControlPanel(QWidget *parent)
   mDriveWidget->setDisabled(true);
   egoManualCtrlLayout->addWidget(mDriveWidget);
   connect(mOverrideVehicleControl, SIGNAL(stateChanged(int)), this, SLOT(overrideVehicleControl(int)));
-  vehicleStatusLayout->addLayout(egoManualCtrlLayout); 
+  //vehicleStatusLayout->addLayout(egoManualCtrlLayout); 
 
   layout->addLayout(vehicleStatusLayout);
 

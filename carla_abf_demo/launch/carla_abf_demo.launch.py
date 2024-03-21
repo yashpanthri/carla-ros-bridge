@@ -19,9 +19,9 @@ default_goal_pose = {
 }
 
 '''default_goal_pose = {
-    'px': float('15.85'),
-    'py': float('193.23'),
-    'pz': float('0.006'),
+    'px': float('0.0'),
+    'py': float('-205.0'),
+    'pz': float('0.0016'),
     'ox': float('0.0'),
     'oy': float('0.0'),
     'oz': float('0.0'),
@@ -30,13 +30,14 @@ default_goal_pose = {
 
 # string with message to publish on topic /carla/available/scenarios
 # This topic expects dictionary-like messages
-abf_scenario_file = os.path.join(get_package_share_directory('carla_abf_demo'), 'config/ABFScenario.xosc')
+hReveal_scenario_file = os.path.join(get_package_share_directory('carla_abf_demo'), 'config/HighwayReveal.xosc')
+hRearEnd_scenario_file = os.path.join(get_package_share_directory('carla_abf_demo'), 'config/HighwayRearEnd.xosc')
 
 ros_topic_msg_string = "{{ 'scenarios': \
     [\
-         {{ 'name': 'ABF Scenario', 'scenario_file': '{}'}}\
-    ] }}".format(abf_scenario_file)
-
+         {{ 'name': 'Highway Reveal', 'scenario_file': '{}'}},\
+         {{ 'name': 'Rear End Collision', 'scenario_file': '{}'}} \
+    ] }}".format(hReveal_scenario_file, hRearEnd_scenario_file)
 
 def generate_launch_description():
     ld = launch.LaunchDescription([
@@ -192,7 +193,7 @@ def generate_launch_description():
         launch.actions.ExecuteProcess(
             cmd=["ros2", "service", "call", "/scenario_runner/execute_scenario",
                  "carla_ros_scenario_runner_types/srv/ExecuteScenario",
-                 "{{scenario: {{scenario_file: '{}'}}}}".format(abf_scenario_file)],
+                 "{{scenario: {{scenario_file: '{}'}}}}".format(hReveal_scenario_file)],
             name='service_call_execute_scenario',
             output='screen',  # This line prints the output to the terminal
         ),
