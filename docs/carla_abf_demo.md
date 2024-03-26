@@ -50,9 +50,9 @@ You will require 4 Linux Terminals to Run this demo
     sh $CARLA_ROOT/CarlaUE4.sh -RenderOffScreen
   ```
 
-2. Terminal 02: Launch the ROS2 Nodes
+2. Terminal 02: Launch the ROS2 Nodes with desired NS-3 Delay in Milliseconds (default:0)
   ```sh
-    ros2 launch carla_abf_demo carla_abf_demo.launch.py
+    ros2 launch carla_abf_demo carla_abf_demo.launch.py ns3_delay:=5000
   ```
 
 3. Terminal 03: Run ns-3
