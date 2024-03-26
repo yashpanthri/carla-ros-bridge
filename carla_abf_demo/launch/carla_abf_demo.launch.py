@@ -93,6 +93,12 @@ def generate_launch_description():
             default_value=default_goal_pose
         ),
 
+        # NS-3 Delay in milliseconds
+        launch.actions.DeclareLaunchArgument(
+            name='ns3_delay',
+            default_value='0'
+        ),
+
         # Carla Twist to Control
         launch_ros.actions.Node(
             package='carla_twist_to_control',
@@ -184,7 +190,7 @@ def generate_launch_description():
                     'ns3_ros_bridge'), 'ns3_ros_bridge.launch.py')
             ),
             launch_arguments={
-                'delay_ms': '0'
+                'delay_ms': launch.substitutions.LaunchConfiguration('ns3_delay'),
             }.items()
         ),
 

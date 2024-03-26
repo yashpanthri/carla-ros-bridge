@@ -204,7 +204,7 @@
                     <PrivateAction>
                         <TeleportAction>
                             <Position>
-                                <LanePosition roadId="50" laneId="-2" offset="0.0" s="140.0"/>
+                                <LanePosition roadId="50" laneId="-2" offset="0.0" s="145.0"/>
                             </Position>
                         </TeleportAction>
                     </PrivateAction>
