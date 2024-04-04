@@ -119,7 +119,7 @@
                                 <PrivateAction>
                                     <LongitudinalAction>
                                         <SpeedAction>
-                                            <SpeedActionDynamics dynamicsShape="step" value="10" dynamicsDimension="time"/>
+                                            <SpeedActionDynamics dynamicsShape="step" value="0" dynamicsDimension="time"/>
                                             <SpeedActionTarget>
                                                 <AbsoluteTargetSpeed value="$LeadCarSpeed"/> <!-- 19.44 m/s = 70mph -->
                                             </SpeedActionTarget>
@@ -176,7 +176,7 @@
                                 <PrivateAction>
                                 <LongitudinalAction>
                                     <SpeedAction>
-                                    <SpeedActionDynamics dynamicsShape="step" value="10" dynamicsDimension="time"/>
+                                    <SpeedActionDynamics dynamicsShape="step" value="0" dynamicsDimension="time"/>
                                     <SpeedActionTarget>
                                         <AbsoluteTargetSpeed value="0.0"/>
                                     </SpeedActionTarget>

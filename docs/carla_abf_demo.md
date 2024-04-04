@@ -43,7 +43,7 @@ The [Automatic Emergency Braking Feature Demo](https://github.com/ttgamage/carla
 
 ## Run the demo
 
-You will require 4 Linux Terminals to Run this demo
+You will require 3 Linux Terminals to Run this demo
 
 1. Terminal 01: Start CARLA Server
   ```sh
@@ -62,7 +62,16 @@ You will require 4 Linux Terminals to Run this demo
   ```
   The ns-3 code must run after ns3_ros_bridge completes initialization. This is launched during the carla_abf_demo with the other ROS2 nodes. In general, it will be initialized by the time the rviz GUI loads.
 
-4. Terminal 04: Publish the Target Speed
+4. Using the RVIZ interface, set the desired target_speed and hit "Go". 
+  Alternative: Publish the Target Speed using a terminal
   ```sh
     ros2 topic pub --once /carla/hero/target_speed std_msgs/msg/Float64 "{data: 21.0}"
+  ```
+
+## Troubleshooting Tips
+
+1. Random Traffic Manager Bind Failures
+  kill the currently running instance on port 8000 and "Reload" the scenario from RVIZ.
+  ```sh
+    sudo fuser -k 8000/tcp
   ```

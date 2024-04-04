@@ -99,33 +99,6 @@ def generate_launch_description():
             default_value='0'
         ),
 
-        # Carla Twist to Control
-        launch_ros.actions.Node(
-            package='carla_twist_to_control',
-            executable='carla_twist_to_control',
-            name='carla_twist_to_control',
-            remappings=[
-                (
-                    ["/carla/",
-                        launch.substitutions.LaunchConfiguration('role_name'), "/vehicle_control_cmd"],
-                    ["/carla/",
-                        launch.substitutions.LaunchConfiguration('role_name'), "/vehicle_control_cmd_manual"]
-                )
-            ],
-            parameters=[
-                {
-                    'role_name': launch.substitutions.LaunchConfiguration('role_name')
-                }
-            ]
-        ),
-
-        # Publish ABFCaseStudy to topic /carla/available_scenarios
-        launch.actions.ExecuteProcess(
-            cmd=["ros2", "topic", "pub", "/carla/available_scenarios",
-                 "carla_ros_scenario_runner_types/CarlaScenarioList", ros_topic_msg_string],
-            name='topic_pub_available_scenarios',
-        ),
-
         # Launch CARLA Bridge
         launch.actions.IncludeLaunchDescription(
             launch.launch_description_sources.PythonLaunchDescriptionSource(
@@ -154,6 +127,25 @@ def generate_launch_description():
             }.items()
         ),
 
+         # Set Ego Vehicle's Goal Pose
+        launch.actions.ExecuteProcess(
+            cmd=[
+                "ros2", "topic", "pub", "--once", "/carla/hero/goal_pose", "geometry_msgs/msg/PoseStamped", 
+                '{{ "pose": {{ \
+                    "position": {{"x": {px}, "y": {py}, "z": {pz}}}, \
+                    "orientation": {{"x": {ox}, "y": {oy}, "z": {oz}, "w": {ow}\
+                }}}}}}'.format(
+                    px=default_goal_pose['px'],
+                    py=default_goal_pose['py'],
+                    pz=default_goal_pose['pz'],
+                    ox=default_goal_pose['ox'],
+                    oy=default_goal_pose['oy'],
+                    oz=default_goal_pose['oz'],
+                    ow=default_goal_pose['ow'])
+            ],
+            name='execute_topic_pub_goal_pose',
+        ),
+
         # Launch Waypoint Publisher
         launch.actions.IncludeLaunchDescription(
             launch.launch_description_sources.PythonLaunchDescriptionSource(
@@ -165,6 +157,44 @@ def generate_launch_description():
                 'port': launch.substitutions.LaunchConfiguration('port'),
                 'timeout': launch.substitutions.LaunchConfiguration('timeout'),
                 'role_name': launch.substitutions.LaunchConfiguration('role_name')
+            }.items()
+        ),
+
+        # Carla Twist to Control
+        launch_ros.actions.Node(
+            package='carla_twist_to_control',
+            executable='carla_twist_to_control',
+            name='carla_twist_to_control',
+            remappings=[
+                (
+                    ["/carla/",
+                        launch.substitutions.LaunchConfiguration('role_name'), "/vehicle_control_cmd"],
+                    ["/carla/",
+                        launch.substitutions.LaunchConfiguration('role_name'), "/vehicle_control_cmd_manual"]
+                )
+            ],
+            parameters=[
+                {
+                    'role_name': launch.substitutions.LaunchConfiguration('role_name')
+                }
+            ]
+        ),
+
+        # Publish available scenarios to topic /carla/available_scenarios
+        launch.actions.ExecuteProcess(
+            cmd=["ros2", "topic", "pub", "/carla/available_scenarios",
+                 "carla_ros_scenario_runner_types/CarlaScenarioList", ros_topic_msg_string],
+            name='topic_pub_available_scenarios',
+        ),
+
+        # Launch ns-3 Bridge
+        launch.actions.IncludeLaunchDescription(
+            launch.launch_description_sources.PythonLaunchDescriptionSource(
+                os.path.join(get_package_share_directory(
+                    'ns3_ros_bridge'), 'ns3_ros_bridge.launch.py')
+            ),
+            launch_arguments={
+                'delay_ms': launch.substitutions.LaunchConfiguration('ns3_delay'),
             }.items()
         ),
 
@@ -182,18 +212,6 @@ def generate_launch_description():
                 'wait_for_ego': 'True'
             }.items()
         ),
-
-        # Launch ns-3 Bridge
-        launch.actions.IncludeLaunchDescription(
-            launch.launch_description_sources.PythonLaunchDescriptionSource(
-                os.path.join(get_package_share_directory(
-                    'ns3_ros_bridge'), 'ns3_ros_bridge.launch.py')
-            ),
-            launch_arguments={
-                'delay_ms': launch.substitutions.LaunchConfiguration('ns3_delay'),
-            }.items()
-        ),
-
 
         # Service Call to Load the Scenario
         launch.actions.ExecuteProcess(
@@ -220,25 +238,6 @@ def generate_launch_description():
                 '-d', os.path.join(get_package_share_directory('carla_abf_demo'), 'config/abf_demo_config.rviz')],
             on_exit=launch.actions.Shutdown()
         ),
-
-        # Set Ego Vehicle's Goal Pose
-        launch.actions.ExecuteProcess(
-            cmd=[
-                "ros2", "topic", "pub", "--once", "/carla/hero/goal_pose", "geometry_msgs/msg/PoseStamped", 
-                '{{ "pose": {{ \
-                    "position": {{"x": {px}, "y": {py}, "z": {pz}}}, \
-                    "orientation": {{"x": {ox}, "y": {oy}, "z": {oz}, "w": {ow}\
-                }}}}}}'.format(
-                    px=default_goal_pose['px'],
-                    py=default_goal_pose['py'],
-                    pz=default_goal_pose['pz'],
-                    ox=default_goal_pose['ox'],
-                    oy=default_goal_pose['oy'],
-                    oz=default_goal_pose['oz'],
-                    ow=default_goal_pose['ow'])
-            ],
-            name='execute_topic_pub_goal_pose',
-        )
     ])
     return ld
 
